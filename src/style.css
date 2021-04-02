@@ -1,0 +1,25 @@
+* {
+  margin: 1px;
+  padding: 1px;
+}
+
+#root {
+  text-align: center;
+}
+
+.navbar {
+  height: 100px;
+  background-color: #2c498d;
+  color: white;
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  margin: 1px;
+  padding: 10px;
+}
