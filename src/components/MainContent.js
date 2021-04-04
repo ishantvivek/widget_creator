@@ -14,10 +14,10 @@ export default class MainContent extends React.Component {
     async componentDidMount() {
         let list = [] , dataset = await fetchApi.get()
         dataset = dataset.data
+
         for(const stateName in dataset){
-            list.push({name: stateName})
+            list.push({name: stateName, statecode: dataset[stateName].statecode})
         }
-        console.log(dataset)
         this.setState({states: list})
     }
 
@@ -36,35 +36,35 @@ export default class MainContent extends React.Component {
                     </div>
 
                     <div className="form">
-                    <label>Header Text: <input type="text" name="name" /> </label>
+                    <label>Header Text: <input type="text" name="headerText" /> </label>
                     </div>
 
                     <div className="form">
-                    <label>Header Background: <input type="text" name="name" /> </label>
+                    <label>Header Background: <input type="text" name="headerBg" /> </label>
                     </div>
 
                     <div className="form">
-                    <label>Header Text Color: <input type="text" name="name" /> </label>
+                    <label>Header Text Color: <input type="text" name="headerCol" /> </label>
                     </div>
 
                     <div className="form">
-                    <label>Footer Text: <input type="text" name="name" /> </label>
+                    <label>Footer Text: <input type="text" name="footerText" /> </label>
                     </div>
 
                     <div className="form">
-                    <label>Footer Background: <input type="text" name="name" /> </label>
+                    <label>Footer Background: <input type="text" name="footerBg" /> </label>
                     </div>
 
                     <div className="form">
-                    <label>Footer Text Color: <input type="text" name="name" /> </label>
+                    <label>Footer Text Color: <input type="text" name="footerCol" /> </label>
                     </div>
 
                     <div className="form">
-                    <label>Width(in px): <input type="text" name="name" /> </label>
+                    <label>Width(in px): <input type="text" name="width" /> </label>
                     </div>
 
                     <div className="form">
-                    <label>Height(in px): <input type="text" name="name" /> </label>
+                    <label>Height(in px): <input type="text" name="height" /> </label>
                     </div>
 
                     <div className="form">
