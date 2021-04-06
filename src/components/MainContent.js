@@ -126,9 +126,32 @@ export default class MainContent extends React.Component {
         <div id='app'></div>
         </body>
         </html>"
-        </iframe>`
+</iframe>`
+
         widgetString = widgetString.replace("%%" , event.target.value)
-        this.setState({output: widgetString})
+        this.setState({output : widgetString})
+
+        // Yet to be fixed
+        // let newWidgetString = this.state.output
+        // console.log(newWidgetString)
+        // const value1 = event.target.name
+        // switch(value1){
+        //     case 'opt': {
+        //         newWidgetString = newWidgetString.replace("%%" , event.target.value)
+        //         this.setState({output: newWidgetString})
+        //         console.log(newWidgetString)
+        //         break
+        //     }
+        //     case 'headertext': {
+        //         widgetString = widgetString.replace("%width%" , event.target.value)
+        //         this.setState({output: widgetString})
+        //         console.log(widgetString)
+        //         break
+        //     }
+        //     default: {
+        //         console.log("Do nothing")
+        //     }
+        // }
     }
 
     handleClick(event){
@@ -151,8 +174,9 @@ export default class MainContent extends React.Component {
                         </select>
                     </div>
 
-                    <div className="form">
-                        <label>Header Text: <input type="text" name="headertext" /> </label>
+                    {/* Not yet working, yet to be fixed */}
+                    {/* <div className="form">
+                        <label>Header Text: <input type="text" name="headertext" onChange={this.generateWidgetCode} /> </label>
                     </div>
 
                     <div className="form">
@@ -181,10 +205,10 @@ export default class MainContent extends React.Component {
 
                     <div className="form">
                         <label>Height(in px): <input type="text" name="height" /> </label>
-                    </div>
+                    </div> */}
 
                     <div className="form">
-                        <input type="submit" onClick={this.handleClick} value="Submit"/>
+                        <input type="submit" onClick={this.handleClick} value="Get your widget"/>
                     </div>
 
                     <div className="form">

@@ -23,3 +23,8 @@
   margin: 1px;
   padding: 10px;
 }
+
+textarea {
+  width: 450px;
+  height: 100px;
+}
