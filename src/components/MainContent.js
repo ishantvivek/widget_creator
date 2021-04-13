@@ -7,6 +7,9 @@ export default class MainContent extends React.Component {
         super(props)
 
         this.state = {
+            statecode : "%%",
+            width : "%width%",
+            height : "%height%",
             states : {},
             output : "",
             textbox : ""
@@ -25,12 +28,9 @@ export default class MainContent extends React.Component {
           .catch((err)=>{
             console.log('Something went wrong')
           })
-      }
 
-    // The code we have to display
-    generateWidgetCode(event){
         let widgetString =
-        `<iframe width="1200" height="600" srcdoc ="
+        `<iframe width="%width%" height="%height%" srcdoc ="
         <html>
         <head>
         <script crossorigin src='https://unpkg.com/react@17/umd/react.production.min.js'></script>
@@ -127,31 +127,38 @@ export default class MainContent extends React.Component {
         </body>
         </html>"
 </iframe>`
+        this.setState({output: widgetString})
+      }
 
-        widgetString = widgetString.replace("%%" , event.target.value)
-        this.setState({output : widgetString})
+    // The code we have to display
+    generateWidgetCode(event){
+        let newWidgetString = this.state.output
 
-        // Yet to be fixed
-        // let newWidgetString = this.state.output
-        // console.log(newWidgetString)
-        // const value1 = event.target.name
-        // switch(value1){
-        //     case 'opt': {
-        //         newWidgetString = newWidgetString.replace("%%" , event.target.value)
-        //         this.setState({output: newWidgetString})
-        //         console.log(newWidgetString)
-        //         break
-        //     }
-        //     case 'headertext': {
-        //         widgetString = widgetString.replace("%width%" , event.target.value)
-        //         this.setState({output: widgetString})
-        //         console.log(widgetString)
-        //         break
-        //     }
-        //     default: {
-        //         console.log("Do nothing")
-        //     }
-        // }
+        console.log(newWidgetString)
+        const value1 = event.target.name
+        switch(value1){
+            case 'opt': {
+                 newWidgetString = newWidgetString.replace(this.state.statecode , event.target.value)
+                 this.setState({output: newWidgetString, statecode: event.target.value})
+                 console.log(newWidgetString)
+                 break
+            }
+            case 'width': {
+                 newWidgetString = newWidgetString.replace(this.state.width , event.target.value)
+                 this.setState({output: newWidgetString , width: event.target.value})
+                 console.log(newWidgetString)
+                 break
+            }
+            case 'height': {
+                newWidgetString = newWidgetString.replace(this.state.height , event.target.value)
+                this.setState({output: newWidgetString, height: event.target.value})
+                console.log(newWidgetString)
+                break
+           }
+             default: {
+                 console.log("Do nothing")
+            }
+        }
     }
 
     handleClick(event){
@@ -167,14 +174,13 @@ export default class MainContent extends React.Component {
                     <h2> Enter Widget Details </h2>
                     <div className="form">
                         <label> Select State: </label>
-                        <select onChange={this.generateWidgetCode}>
+                        <select name="opt" onChange={this.generateWidgetCode}>
                         {Object.keys(allData).map((e, key) => {
                             return <option key={key} value={e}> {e}</option>
                         })}
                         </select>
                     </div>
 
-                    {/* Not yet working, yet to be fixed */}
                     {/* <div className="form">
                         <label>Header Text: <input type="text" name="headertext" onChange={this.generateWidgetCode} /> </label>
                     </div>
@@ -197,15 +203,15 @@ export default class MainContent extends React.Component {
 
                     <div className="form">
                         <label>Footer Text Color: <input type="text" name="footerCol" /> </label>
-                    </div>
-
-                    <div className="form">
-                        <label>Width(in px): <input type="text" name="width" /> </label>
-                    </div>
-
-                    <div className="form">
-                        <label>Height(in px): <input type="text" name="height" /> </label>
                     </div> */}
+
+                    <div className="form">
+                        <label>Width(in px): <input type="text" name="width" onChange={this.generateWidgetCode}/> </label>
+                    </div>
+
+                    <div className="form">
+                        <label>Height(in px): <input type="text" name="height" onChange={this.generateWidgetCode}/> </label>
+                    </div>
 
                     <div className="form">
                         <input type="submit" onClick={this.handleClick} value="Get your widget"/>
